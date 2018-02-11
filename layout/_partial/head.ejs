@@ -18,8 +18,15 @@
   } else if (is_tag()){
     title = 'Tag: ' + page.tag;
   }
+  var add_noindex = true;
+  if (is_post()){
+    add_noindex = false;
+  }
   %>
   <title><% if (title){ %><%= title %> | <% } %><%= config.title %></title>
+  <% if (add_noindex){ %>
+    <meta name="robots" content="noindex">
+  <% } %>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
   <% if (theme.rss){ %>
